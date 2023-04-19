@@ -1,19 +1,15 @@
-version: "1"
+version: "3"
 services:
   db:
-    image: postgres
+    image: postgres:11.13
+    container_name: traceTogether-db
     environment:
       POSTGRES_USER: myuser
       POSTGRES_PASSWORD: mypassword
       POSTGRES_DB: mydb
     volumes:
-      - ./db:/var/lib/postgresql/data
+      - ./postgres_data:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
-    restart: always
-  web:
-    build: .
-    ports:
-      - "8080:8080"
-    depends_on:
-      - db
+      - "5435:5432"
+volumes:
+  postgres_data: {}

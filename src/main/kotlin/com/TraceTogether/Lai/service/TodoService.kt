@@ -3,11 +3,14 @@ package com.TraceTogether.Lai.service
 import com.TraceTogether.Lai.dto.TodoDto
 import com.TraceTogether.Lai.mapper.TodoMapper
 import com.TraceTogether.Lai.repository.TodoRepository
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
+@Transactional
 class TodoService(
-    val todoRepository: TodoRepository,
+    @Autowired val todoRepository: TodoRepository,
     val todoMapper: TodoMapper
 ) {
   fun getAllTodos(): List<TodoDto> {

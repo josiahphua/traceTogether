@@ -1,0 +1,1 @@
+CREATE DATABASE trace_together IF NOT

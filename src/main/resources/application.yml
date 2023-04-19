@@ -1,17 +1,12 @@
 spring:
   datasource:
-    url: jdbc:postgresql://db:5432/mydb
-    username: myuser
-    password: mypassword
+    url: jdbc:postgresql://localhost:5435/postgres
+    username: postgres
+    password: mysecretpassword
     driverClassName: org.postgresql.Driver
   jpa:
+    hibernate:
+      ddl-auto: update
     properties:
-      hibernate:
-        ddl-auto: create-drop
-        globally-quoted-identifiers: true
-        globally-quoted-identifiers-skip-column-definitions: true
-  sql:
-    init:
-      mode: always
-  autoconfigure:
-    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+    database: postgresql

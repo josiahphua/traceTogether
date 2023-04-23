@@ -1,8 +1,6 @@
 package com.TraceTogether.Lai.api
 
 import com.TraceTogether.Lai.dto.TodoDto
-import com.TraceTogether.Lai.model.ToDo
-import com.TraceTogether.Lai.repository.TodoRepository
 import com.TraceTogether.Lai.service.TodoService
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping

@@ -10,3 +10,5 @@ spring:
     properties:
       dialect: org.hibernate.dialect.PostgreSQLDialect
     database: postgresql
+server:
+  port: 8080

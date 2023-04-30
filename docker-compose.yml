@@ -9,7 +9,7 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: trace_together_db
     ports:
-      - "5432:5432"
+      - "5432:5432" # exposing the port 5432 in docker, to the port 5432 of my machine.
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
   app:

@@ -23,8 +23,9 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
-	implementation("org.postgresql:postgresql:42.3.1")
+	implementation("org.postgresql:postgresql")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	implementation(kotlin("stdlib-jdk8"))
 }
 
 tasks.withType<KotlinCompile> {

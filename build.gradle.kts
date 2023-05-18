@@ -24,8 +24,16 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	implementation("org.postgresql:postgresql")
-	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	implementation(kotlin("stdlib-jdk8"))
+
+	// Security
+	implementation ("org.springframework.boot:spring-boot-starter-thymeleaf")
+	implementation ("org.springframework.boot:spring-boot-starter-security")
+//  Temporary explicit version to fix Thymeleaf bug
+	implementation ("org.thymeleaf.extras:thymeleaf-extras-springsecurity6:3.1.1.RELEASE")
+	implementation ("org.springframework.security:spring-security-test")
+
+	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
 tasks.withType<KotlinCompile> {

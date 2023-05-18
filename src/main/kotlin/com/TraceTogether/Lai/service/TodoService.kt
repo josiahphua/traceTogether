@@ -10,7 +10,8 @@ import org.springframework.transaction.annotation.Transactional
 @Service
 @Transactional
 class TodoService(
-    @Autowired val todoRepository: TodoRepository,
+    @Autowired
+    val todoRepository: TodoRepository,
     val todoMapper: TodoMapper
 ) {
   fun getAllTodos(): List<TodoDto> {

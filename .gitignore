@@ -28,3 +28,5 @@ logs/
 # Ignore Maven-specific files
 target/
 pom.xml.*
+
+.env

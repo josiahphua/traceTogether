@@ -6,6 +6,8 @@ import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 import jakarta.persistence.Table
+import org.springframework.security.core.GrantedAuthority
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import java.util.UUID
 
 @Entity
@@ -19,9 +21,12 @@ data class User (
     var username: String,
 
     @Column(name = "password")
-    var password: String,
+    var passwordHash: String,
+
+    @Column(name = "authorities")
+    var authorities: MutableCollection<GrantedAuthority> = mutableListOf()
 ) {
-    fun setPassword(pass: String) {
-        password = pass
+    fun setPassword(password: String) {
+        passwordHash = BCryptPasswordEncoder().encode(password)
     }
 }

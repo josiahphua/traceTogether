@@ -31,9 +31,9 @@ class WebSecurityConfig(
 
         http.authorizeHttpRequests()
             // To set a specific USER authority
-//            .requestMatchers("/**")
-//            .hasAuthority("USER")
-            .requestMatchers("/api/todos")
+            .requestMatchers("/**")
+            .hasAuthority("USER")
+            .requestMatchers("/api/**")
             .permitAll()
             .anyRequest()
             .authenticated()

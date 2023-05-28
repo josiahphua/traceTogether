@@ -21,10 +21,10 @@ class JwtAuthenticationFilter(
     private val authenticationManager: AuthenticationManager
 ): UsernamePasswordAuthenticationFilter(){
     override fun attemptAuthentication(request: HttpServletRequest, response: HttpServletResponse): Authentication {
-        val credentials = ObjectMapper().readValue(req.inputStream, User::class.java)
+        val credentials = ObjectMapper().readValue(request.inputStream, User::class.java)
         val auth = UsernamePasswordAuthenticationToken(
             credentials.username,
-            credentials.password,
+            credentials.passwordHash,
             Collections.singleton(SimpleGrantedAuthority("USER"))
         )
         return authenticationManager.authenticate(auth)

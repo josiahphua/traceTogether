@@ -10,11 +10,13 @@ import java.util.Date
 
 @Component
 class JwtTokenProvider(
-    @Value("\${jwt.secret}")
-    private val jwtSecret: String,
-    @Value("\${jwt.expiration}")
-    private val validityInMilliseconds: Long,
+//    @Value("\${jwt.secret}")
+//    private val jwtSecret: String,
+//    @Value("\${jwt.expiration}")
+//    private val validityInMilliseconds: Long,
 ) {
+    private val jwtSecret = "SECRET"
+    private  val validityInMilliseconds = 86400000
     private val secretKey = Keys.hmacShaKeyFor(jwtSecret.toByteArray())
     fun generateToken(authentication: Authentication): String {
         val userPrincipal = authentication.principal as UserSecurity

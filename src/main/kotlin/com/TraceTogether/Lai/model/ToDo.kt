@@ -1,12 +1,15 @@
 package com.TraceTogether.Lai.model
 
 import jakarta.persistence.Column
-import jakarta.persistence.Table
 import jakarta.persistence.Entity
-import jakarta.persistence.Id
+import jakarta.persistence.EnumType
+import jakarta.persistence.Enumerated
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
-import java.time.LocalDate
+import jakarta.persistence.Id
+import jakarta.persistence.PrePersist
+import jakarta.persistence.PreUpdate
+import jakarta.persistence.Table
 import java.time.LocalDateTime
 
 @Entity
@@ -20,16 +23,22 @@ data class ToDo(
         var title: String,
 
         @Column(name = "status")
-        var status: String,
+        @Enumerated(EnumType.STRING)
+        // EnumType.ORDINAL, creates the enum in order,
+        // if add new status in the middle, can disrupt existing data.
+        var status: ToDoStatus = ToDoStatus.PENDING,
 
         @Column(name = "created_at")
         var createdAt: LocalDateTime = LocalDateTime.now(),
 
+        @Column(name = "updated_at")
+        var updatedAt: LocalDateTime? = LocalDateTime.now(),
+
         @Column(name = "todo_start_date")
-        var todoStartDate: LocalDate? = LocalDate.now(),
+        var todoStartDate: LocalDateTime? = null,
 
         @Column(name = "todo_end_date")
-        var todoEndDate: LocalDate? = LocalDate.now(),
+        var todoEndDate: LocalDateTime? = null,
 
         @Column(name = "description")
         var description: String? = null,
@@ -42,9 +51,31 @@ data class ToDo(
 
         @Column(name = "priority")
         var priority: String? = null
-)
+) {
+        @PrePersist
+        fun onCreate() {
+                assignLocalDateTimeNow(todoStartDate)
+        }
 
-//enum class ToDoStatus(val status: String) {
-//    Active("Active"),
-//    Completed("Completed")
-//}
+        @PreUpdate
+        fun onUpdat() {
+                assignLocalDateTimeNow(updatedAt)
+        }
+}
+
+enum class ToDoStatus(val status: String) {
+        PENDING("Pending"),
+        IN_PROGRESS("In Progress"),
+        COMPLETED("Completed")
+}
+
+fun assignLocalDateTimeNow(dataAttribute: LocalDateTime?): LocalDateTime {
+        // Elvis operator "?:" takes the left side, if it's non-null
+        /* initial code
+        if ( dataAttribute == null ) {
+                dataAttribute = LocalDateTime.now()
+        }
+        return dataAttribute
+         */
+        return dataAttribute ?: LocalDateTime.now()
+}

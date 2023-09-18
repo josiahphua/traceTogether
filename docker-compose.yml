@@ -8,6 +8,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
       POSTGRES_DB: trace_together_db
+      JWT_SECRET: TRACE_SECRET
     ports:
       - "5432:5432" # exposing the port 5432 in docker, to the port 5432 of my machine.
     volumes:

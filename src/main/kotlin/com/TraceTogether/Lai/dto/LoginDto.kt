@@ -1,4 +1,4 @@
-package com.TraceTogether.Lai.model
+package com.TraceTogether.Lai.dto
 
 data class LoginDto(
         val email: String,
